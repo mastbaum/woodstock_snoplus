@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <title>%(title)s</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/woodstock.css"/>
+  </head>
+  <body>
+    <!-- begin navigation bar //-->
+    <div class="navbar" style="margin:-10px;padding-bottom:16px;">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="index.html">woodstock</a>
+          <ul class="nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/trigger">Trigger</a></li>
+            <li><a href="/data_cleaning">Data Cleaning</a></li>
+            <li><a href="/timing_cmos">Timing/CMOS</a></li>
+            <li><a href="/data_flow">Data Flow</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- end navigation bar //-->
+
+    %(content)s
+
+    <!-- begin modal dialog for plots //-->
+    <div class="modal" id="plot-modal" style="display:none;width:650px">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal">x</button>
+        <h3 id="plot-modal-title">Plot</h3>
+      </div>
+      <div class="modal-body">
+        <div style="display:inline-block;">
+          <div id="modal-plot" style="float:left;height:300px;width:400px"></div>
+          <div id="miniature" style="display:inline-block;margin-left:20px">
+            <div id="modal-plot-overview" style="width:166px;height:100px"></div>
+            <p id="modal-plot-overview-legend" style="margin-left:10px"></p>
+          </div>
+        </div>
+      </div>
+      <br/><br/>
+    </div>
+    <!-- end modal dialog for plots //-->
+  </body>
+
+  <script src="/assets/js/jquery-1.7.2.min.js"></script>
+  <script src="/assets/js/jquery.flot.min.js"></script>
+  <script src="/assets/js/jquery.flot.selection.js"></script>
+  <script src="/assets/js/bootstrap-modal.js"></script>
+  <script src="/assets/js/woodstock.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $(".plot").each(function(e) {
+        var data = eval('data_plot_' + $(this).attr('id'));
+        $.plot($(this), [data]);
+      });
+      $(".sparkline").each(function(e) {
+        var data = eval('data_plot_' + $(this).attr('id'));
+        $(this).sparkline(data);
+      });
+      $(".sparkrow").each(function(e) {
+        var data = eval('data_plot_' + $(this).attr('id'));
+        console.log(data.length)
+        if (data.length > 0) {
+          $(this).sparkrow(data);
+        }
+      });
+    });
+  </script>
+</html>
+

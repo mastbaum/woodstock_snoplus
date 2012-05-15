@@ -1,0 +1,26 @@
+body {
+  padding: 10px;
+}
+
+h2 {
+  padding-top: 12px;
+}
+
+.sparkrow {
+  font-family: sans-serif;
+  font-size: small;
+  vertical-align: middle;
+}
+
+.sparkdata {
+  padding-left: 8px;
+  vertical-align: top;
+  min-width: 8ex;
+}
+
+.navbar .navbar-inner {
+  border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+}
+
